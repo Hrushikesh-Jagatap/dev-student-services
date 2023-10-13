@@ -18,7 +18,16 @@ const updatePersonalDetailsById = async (userId, updatedPersonalDetails) => {
       { $set: { personalDetails: mergedPersonalDetails, "ApplicationStatus.isProfileCompleted": true } },
       { new: true }
     );
-    return updatedStudent;
+    
+    if (updatedStudent) {
+
+      const { personalDetails, ApplicationStatus } = updatedStudent
+
+      return { personalDetails, ApplicationStatus };
+    } else {
+      throw new Eroor('Failed to get PersonalDetails Student')
+    }
+
   } catch (error) {
     throw new Error('Failed to updatePersonalDetails student');
   }
