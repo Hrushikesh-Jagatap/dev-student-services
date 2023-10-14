@@ -38,6 +38,16 @@ const studentSchema = new mongoose.Schema(
         default: null
       },
 
+      gender: {
+        type: String,
+        default: null
+      },
+
+      language: {
+        type:String,
+        default: null
+      },
+
       phone_number: {
         type: String,
         default: null
