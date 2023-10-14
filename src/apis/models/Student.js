@@ -154,7 +154,8 @@ const studentSchema = new mongoose.Schema(
       lastClassPerformance: {
         type: String,
         default: null
-      }
+      },
+      target_exam:[String]
 
     },
 
