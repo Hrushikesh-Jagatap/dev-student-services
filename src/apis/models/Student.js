@@ -124,6 +124,30 @@ const studentSchema = new mongoose.Schema(
       ],
     },
 
+    educationDetails: {
+
+      class: {
+        type: String,
+        default: null
+      },
+
+      Board: {
+        type: String,
+        default: null
+      },
+
+      prefferedSub: [{
+        type: String,
+        default: null
+      }],
+
+      lastClassPerformance: {
+        type: String,
+        default: null
+      }
+
+    },
+
     enrolled_batch: [
       {
         batch_id: String,
@@ -161,7 +185,7 @@ const studentSchema = new mongoose.Schema(
     },
 
     assignmentId: [String],
-    
+
     isDeleted: {
       type: Boolean,
       default: false,

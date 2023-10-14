@@ -14,6 +14,8 @@ const UpdateStudentById = require('./UpdateStudentById'); // done
 
 const PersonalDetails = require('./PersonalDetails'); // 
 
+const EducationDetails = require("./EducationDetails")
+
 const DeleteStudentById = require('./DeleteStudentById')
 
 const GetByuserId = require('./GetByUserId')
@@ -23,6 +25,7 @@ const updateStatus = require("./updateStatus")
 const splash = require('./splashApi')
 
 
+router.use('/', EducationDetails);
 
 router.use('/', PersonalDetails); // api for updated persponal details
 
