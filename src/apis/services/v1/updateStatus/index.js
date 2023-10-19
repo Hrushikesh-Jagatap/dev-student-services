@@ -2,9 +2,9 @@ const StudentData = require('@models/Student');
 const { loadBalancer, SYSTEM_TOKEN } = require('@config');
 const axios = require('axios');
 
-const updateStudentStatus = async (userId, studentData) => {
+const updateStudentStatus = async (sid_userId, studentData) => {
   try {
-    const student = await StudentData.findOne({ userId: userId });
+    const student = await StudentData.findOne({ userId: sid_userId });
 
     if (!student) {
       throw new Error('Student not found');
@@ -49,7 +49,7 @@ const updateStudentStatus = async (userId, studentData) => {
           Authorization: `Bearer ${SYSTEM_TOKEN}`,
         },
         data: {
-          userId: userId,
+          sid_userId: sid_userId,
           status,
           about,
           subject,
