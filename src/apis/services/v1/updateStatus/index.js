@@ -2,31 +2,31 @@ const StudentData = require('@models/Student');
 const { loadBalancer, SYSTEM_TOKEN } = require('@config');
 const axios = require('axios');
 
-const updateStudentStatus = async (studentId, studentData) => {
+const updateStudentStatus = async (userId, studentData) => {
   try {
-    const student = await StudentData.findOne({ student_id: studentId });
+    const student = await StudentData.findOne({ userId: userId });
 
     if (!student) {
       throw new Error('Student not found');
     }
 
-    let { tid, status, about, subject, flag, classes } = studentData;
+    let { tid_userId, status, about, subject, flag, classes } = studentData;
     let existingStatus = student.req_status.find(
-      (reqStatus) => reqStatus.tid == tid && reqStatus.subject == subject && reqStatus.classes == classes
+      (reqStatus) => reqStatus.tid_userId == tid_userId && reqStatus.subject == subject && reqStatus.classes == classes
     );
 
     if (existingStatus) {
       existingStatus.status = status;
     } else {
-      student.req_status.push({ tid, status, about, subject, flag, classes });
+      student.req_status.push({ tid_userId, status, about, subject, flag, classes });
     }
 
     const updatedStudent = await student.save();
 
     if (status == "Accepted") {
-      // Push the new teacher data into the teacher_id array
-      const newTeacherData = { teacher_id: tid, subject, classes };
-      updatedStudent.teacher_id.push(newTeacherData);
+      // Push the new teacher data into the teacher_userId array
+      const newTeacherData = { teacher_userId: tid_userId, subject, classes };
+      updatedStudent.teacher_userId.push(newTeacherData);
 
       // Update flag for specific conditions
       updatedStudent.req_status.forEach((reqStatus) => {
@@ -41,7 +41,7 @@ const updateStudentStatus = async (studentId, studentData) => {
     if (status == "requested") {
       const config = {
         method: 'put',
-        url: `${loadBalancer}/tms/apis/v1/status/${tid}`,
+        url: `${loadBalancer}/tms/apis/v1/status/${tid_userId}`,
         headers: {
           app_name: 'teacherApp',
           app_version_code: '101',
@@ -49,7 +49,7 @@ const updateStudentStatus = async (studentId, studentData) => {
           Authorization: `Bearer ${SYSTEM_TOKEN}`,
         },
         data: {
-          sid: studentId,
+          userId: userId,
           status,
           about,
           subject,
