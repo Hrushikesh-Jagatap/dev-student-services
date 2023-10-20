@@ -4,12 +4,12 @@ const StudentData = require('@root/src/apis/models/Student');
 const createStudent = async (studentData) => {
   try {
 
-      const students = await StudentData.find();
-      let studentId= students.length;
+      //const students = await StudentData.find();
+    //   let studentId= students.length;
 
     
-    let student_id =studentId + 1;
-    studentData.student_id=student_id;
+    // let student_id =studentId + 1;
+    // studentData.student_id=student_id;
     const newStudent = await StudentData.create(studentData);
     return newStudent;
   } catch (error) {

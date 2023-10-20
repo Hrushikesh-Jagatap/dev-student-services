@@ -6,10 +6,10 @@ const studentSchema = new mongoose.Schema(
       type: String
     },
 
-    student_id: {
-      type: String,
-      unique: true
-    },
+    // student_id: {
+    //   type: String,
+    //   unique: true
+    // },
 
     personalDetails: { // personal Details ->
       first_name:
@@ -163,19 +163,19 @@ const studentSchema = new mongoose.Schema(
       {
         batch_id: String,
         batch_name: String,
-        teacher_id: String,
+        teacher_userId: String,
       },
     ],
 
-    teacher_id: [{
-      teacher_id: String,
+    teacher_userId: [{
+      teacher_userId: String,
       subject: String,
       classes: String,
     }],
 
     req_status: [
       {
-        tid: String,
+        tid_userId: String,
         status: String, // accept or reject or request
         about: String,
         subject: String,

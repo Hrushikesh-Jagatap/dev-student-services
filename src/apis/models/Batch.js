@@ -22,10 +22,10 @@ const batchSchema = new mongoose.Schema({
     ref: 'Student',
   },
 
-  teacher_id:
+  teacher_userId:
      [{ type: Schema.Types.ObjectId, ref: 'TeacherData' }],
 
-  student_id: [{
+  student_userId: [{
     type: String,
   }],
   lastdate: {
