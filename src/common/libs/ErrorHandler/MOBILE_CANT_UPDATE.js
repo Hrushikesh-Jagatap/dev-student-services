@@ -7,7 +7,7 @@ class MOBILE_CANT_UPDATE extends BaseError {
     const code = 'MOBILE_CANT_UPDATE';
     const statusCode = '500';
     const message = 'Update of number not possible now';
-    const key = 'ums';
+    const key = 'sts';
     super({ code, statusCode, message, key });
   }
 }

@@ -2,14 +2,14 @@ const {
   ErrorHandler: { BaseError },
 } = require('intelli-utility');
 
-class INPUT_FORMAT_ERROR extends BaseError {
+class STUDENT_ALREADY_EXIST extends BaseError {
   constructor() {
-    const code = 'INPUT_FORMAT_ERROR';
+    const code = 'STUDENT_ALREADY_EXIST';
     const statusCode = '200';
-    const message = 'Language should be English';
+    const message = 'Student already exist';
     const key = 'sts';
     super({ code, statusCode, message, key });
   }
 }
 
-module.exports = INPUT_FORMAT_ERROR;
+module.exports = STUDENT_ALREADY_EXIST;

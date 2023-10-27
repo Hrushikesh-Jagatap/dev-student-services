@@ -7,7 +7,7 @@ class DUPLICATE_MOBILE_ERROR extends BaseError {
     const code = 'DUPLICATE_MOBILE_ERROR';
     const statusCode = '200';
     const message = ' duplicate key error: mobileNumber already registered';
-    const key = 'ums';
+    const key = 'sts';
     super({ code, statusCode, message, key });
   }
 }
