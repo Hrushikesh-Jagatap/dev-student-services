@@ -6,9 +6,12 @@ const getSplashData = async (userId) => {
   try {
     
     const user = await StudentData.findOne({ userId: userId }).lean();
-
-    if (!user) {
-      throw new Error('User not found');
+    
+    if (user === null) {
+      return {
+        status: 404,
+        message: 'STUDENT_NOT_FOUND',
+      };
     }
 
     const appVersions = await AppVersion.findOne({});

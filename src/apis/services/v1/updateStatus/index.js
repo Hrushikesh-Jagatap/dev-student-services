@@ -6,8 +6,11 @@ const updateStudentStatus = async (sid_userId, studentData) => {
   try {
     const student = await StudentData.findOne({ userId: sid_userId });
 
-    if (!student) {
-      throw new Error('Student not found');
+    if (student === null) {
+      return {
+        status: 404,
+        message: 'STUDENT_NOT_FOUND',
+      };
     }
 
     let { tid_userId, status, about, subject, flag, classes } = studentData;
