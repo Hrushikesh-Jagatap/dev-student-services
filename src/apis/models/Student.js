@@ -176,6 +176,8 @@ const studentSchema = new mongoose.Schema(
     req_status: [
       {
         tid_userId: String,
+         name:String,
+        profileimage:String,
         status: String, // accept or reject or request
         about: String,
         subject: String,
