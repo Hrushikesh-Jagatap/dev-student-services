@@ -1,7 +1,7 @@
 const StudentData = require('@models/Student');
 const { loadBalancer, SYSTEM_TOKEN } = require('@config');
 const axios = require('axios');
-        const getTeacher = async (args) => {
+const getTeacher = async (args) => {
   console.log('user id is', args);
   // const userId = args.toString();
   // let { userId.toString()} = args
@@ -46,15 +46,12 @@ const updateStudentStatus = async (sid_userId, studentData) => {
     if (existingStatus) {
       existingStatus.status = status;
     } else {
+      const abc = await getTeacher(tid_userId);
+      console.log(abc.data);
+      let name = abc.data.personalDetails.first_name;
+      let profileimage = abc.data.personalDetails.profileImage;
 
-
- 
- const abc = await getTeacher(tid_userId);
- console.log(abc.data);
-  let name=abc.data.personalDetails.first_name ;
-    let profileimage=abc.data.personalDetails.profileImage;
-
-      student.req_status.push({ tid_userId, status, about, subject, flag, classes,name, profileimage});
+      student.req_status.push({ tid_userId, status, about, subject, flag, classes, name, profileimage });
     }
 
     const updatedStudent = await student.save();
