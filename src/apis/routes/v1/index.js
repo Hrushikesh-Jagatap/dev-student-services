@@ -22,13 +22,22 @@ const GetByuserId = require('./GetByUserId')
 
 const updateStatus = require("./updateStatus")
 
-const splash = require('./splashApi')
+const splash = require('./splashApi');
+
+const createRating = require('./createRating');
+
+// const createFeedback = require('./createFeedback')
 
 
+router.use('/', createRating);
+
+// route to update educational Details
 router.use('/', EducationDetails);
 
-router.use('/', PersonalDetails); // api for updated persponal details
+// api for updated persponal details
+router.use('/', PersonalDetails); 
 
+// route to get splash Api
 router.use('/', splash)
 
 // Route to get all students

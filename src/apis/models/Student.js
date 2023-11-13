@@ -10,6 +10,13 @@ const studentSchema = new mongoose.Schema(
     //   type: String,
     //   unique: true
     // },
+    rating: {
+      type: Number,
+    },
+  
+    feedback: {
+      type: String,
+    },
 
     personalDetails: { // personal Details ->
       first_name:
