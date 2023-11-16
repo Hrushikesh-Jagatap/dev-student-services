@@ -1,5 +1,6 @@
 const StudentData = require('@models/Student');
 const { loadBalancer, SYSTEM_TOKEN } = require('@config');
+const { pushNotification } = require('@services/v1/Notification')
 const axios = require('axios');
 const getTeacher = async (args) => {
   console.log('user id is', args);
@@ -30,6 +31,8 @@ const getTeacher = async (args) => {
 const updateStudentStatus = async (sid_userId, studentData) => {
   try {
     const student = await StudentData.findOne({ userId: sid_userId });
+    const { personalDetails } = student;
+    const { first_name } = personalDetails;
 
     if (student === null) {
       return {
@@ -43,18 +46,32 @@ const updateStudentStatus = async (sid_userId, studentData) => {
       (reqStatus) => reqStatus.tid_userId == tid_userId && reqStatus.subject == subject && reqStatus.classes == classes
     );
 
+    let NotificationData = {
+      userId: tid_userId,
+      appName: 'teacherApp',
+      data: {
+        message: ` ${first_name} has  Requested You `
+      },
+      body: 'You have received a Request',
+      title: 'You have received a Request'
+    }
+
+    const Notificationservice = await pushNotification(NotificationData);
+
     if (existingStatus) {
       existingStatus.status = status;
     } else {
       const abc = await getTeacher(tid_userId);
       console.log(abc.data);
-      let name = abc.data.personalDetails.first_name;
-      let profileimage = abc.data.personalDetails.profileImage;
+      let name = abc.data.personalDetails?.first_name;
+      let profileimage = abc.data.personalDetails?.profileImage;
 
       student.req_status.push({ tid_userId, status, about, subject, flag, classes, name, profileimage });
     }
 
     const updatedStudent = await student.save();
+
+
 
     if (status == "Accepted") {
       // Push the new teacher data into the teacher_userId array

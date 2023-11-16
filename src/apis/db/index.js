@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const UserModel = require('@root/src/apis/models/Student');
-// const EmployeeModel = require('@models/Employee');
 const config = require('@config');
 
 const { Logger: log } = require('intelli-utility');
