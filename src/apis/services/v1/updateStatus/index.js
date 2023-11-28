@@ -1,5 +1,5 @@
 const StudentData = require('@models/Student');
-const { loadBalancer, SYSTEM_TOKEN } = require('@config');
+const { loadBalancer, SYSTEM_TOKEN,teacher } = require('@config');
 const { pushNotification } = require('@services/v1/Notification')
 const axios = require('axios');
 const getTeacher = async (args) => {
@@ -9,7 +9,7 @@ const getTeacher = async (args) => {
   try {
     const config = {
       method: 'get',
-      url: `${loadBalancer}/tms/apis/v1/user/${args}`,
+      url: `${teacher}/tms/apis/v1/user/${args}`,
       headers: {
         app_name: 'teacherApp',
         app_version_code: '101',
@@ -91,7 +91,7 @@ const updateStudentStatus = async (sid_userId, studentData) => {
     if (status == "requested") {
       const config = {
         method: 'put',
-        url: `${loadBalancer}/tms/apis/v1/status/${tid_userId}`,
+        url: `${teacher}/tms/apis/v1/status/${tid_userId}`,
         headers: {
           app_name: 'teacherApp',
           app_version_code: '101',
