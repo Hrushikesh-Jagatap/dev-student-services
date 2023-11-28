@@ -26,7 +26,12 @@ const splash = require('./splashApi');
 
 const createRating = require('./createRating');
 
+const Getstudentwithsubectorclass = require('./Getstudentwithsubectorclass');
+
+
 // const createFeedback = require('./createFeedback')
+
+router.use('/', Getstudentwithsubectorclass);
 
 
 router.use('/', createRating);
