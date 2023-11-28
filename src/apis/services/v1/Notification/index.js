@@ -1,9 +1,9 @@
-const { loadBalancer } = require('@config');
+const { loadBalancer ,ms} = require('@config');
 const { RequestHandler } = require('intelli-utility')
 
 const pushNotification = async (data) => {
     try {
-        const url = `${loadBalancer}/ms/apis/v1/notification/push`;
+        const url = `${ms}/ms/apis/v1/notification/push`;
         const { data: response } = await RequestHandler.post({ url, data });
         return response
     } catch (error) {
