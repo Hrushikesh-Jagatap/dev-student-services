@@ -74,8 +74,13 @@ const updateStudentStatus = async (sid_userId, studentData) => {
 
 
     if (status == "Accepted") {
-      // Push the new teacher data into the teacher_userId array
-      const newTeacherData = { teacher_userId: tid_userId, subject, classes };
+    const abc1 = await getTeacher(tid_userId);
+      console.log(abc1.data);
+      let names = abc1.data[0].personalDetails?.first_name;
+      let profileimages = abc1.data[0].personalDetails?.profileImage;
+
+      const newTeacherData = { teacher_userId: tid_userId, subject, classes,names,profileimages };
+     
       updatedStudent.teacher_userId.push(newTeacherData);
 
       // Update flag for specific conditions
