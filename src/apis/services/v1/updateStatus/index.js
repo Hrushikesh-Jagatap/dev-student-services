@@ -46,18 +46,6 @@ const updateStudentStatus = async (sid_userId, studentData) => {
       (reqStatus) => reqStatus.tid_userId == tid_userId && reqStatus.subject == subject && reqStatus.classes == classes
     );
 
-    let NotificationData = {
-      userId: tid_userId,
-      appName: 'teacherApp',
-      data: {
-        message: ` ${first_name} has  Requested You `
-      },
-      body: 'You have received a Request',
-      title: 'You have received a Request'
-    }
-
-    const Notificationservice = await pushNotification(NotificationData);
-
     if (existingStatus) {
       existingStatus.status = status;
     } else {
@@ -114,6 +102,16 @@ const updateStudentStatus = async (sid_userId, studentData) => {
       };
 
       const studentUpdateResult = await axios(config);
+      let NotificationData = {
+        userId: tid_userId,
+        appName: 'teacherApp',
+        data: {
+          message: ` ${first_name} has  Requested You `
+        },
+        body: 'You have received a Request',
+        title: 'You have received a Request'
+      }
+      const Notificationservice = await pushNotification(NotificationData);
       console.log('Student status updated:', studentUpdateResult.data);
     }
 
