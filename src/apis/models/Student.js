@@ -225,6 +225,10 @@ const studentSchema = new mongoose.Schema(
       type: Boolean,
       default: false
     },
+     isadmin:{
+    type:Boolean,
+    default:false,
+  },
 
     additional_info: {
       type: String,
